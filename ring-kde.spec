@@ -1,5 +1,5 @@
 %define name        ring-kde
-%define version     2.0.1
+%define version     2.0.0
 %define release     1
 %define daemon_tag  origin/master
 %define lrc_tag     origin/master
@@ -113,7 +113,7 @@ mv ../libringclient/install/share/*  %{buildroot}/%{_datadir}
 
 
 %changelog
-* Fri Apr 24 2015 Thibault Cohen <thibault.cohen@savoirfairelinux.com> - 2.0.1-1
+* Fri Apr 24 2015 Thibault Cohen <thibault.cohen@savoirfairelinux.com> - 2.0.0-1
 - New upstream version
 
 * Fri Mar 27 2015 Thibault Cohen <thibault.cohen@savoirfairelinux.com> - 0.1.0-1
