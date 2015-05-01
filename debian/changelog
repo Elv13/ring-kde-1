@@ -1,3 +1,10 @@
+ring-kde (2.2.0-1) unstable; urgency=medium
+
+  [ Guillaume Roguez ]
+  * New upstream version
+
+ -- Guillaume Roguez <guillaume.roguez@savoirfairelinux.com>  Fri,  1 May 2015 16:35:43 -0400
+
 ring-kde (2.0.0-1) unstable; urgency=medium
 
   [ Thibault Cohen]
