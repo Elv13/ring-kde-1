@@ -59,7 +59,7 @@ get-orig-source:
 	@echo "# Downloading Lib Ring Client ..."
 	rm -rf libringclient
 	mkdir -p libringclient
-	git clone git://anongit.kde.org/libringclient.git libringclient
+	git clone https://gerrit-sflphone.savoirfairelinux.com/ring-lrc.git libringclient
 	cd libringclient && git checkout $(LRC_TAG)
 	cd libringclient && $(RM) -rf .git
 	# Packing

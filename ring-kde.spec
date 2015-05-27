@@ -65,7 +65,7 @@ cd ..
 # LibRingClient
 echo "# Downloading Lib Ring Client ..."
 rm -rf libringclient
-git clone git://anongit.kde.org/libringclient.git libringclient
+git clone https://gerrit-ring.savoirfairelinux.com/ring-lrc.git libringclient
 cd libringclient
 git checkout %{lrc_tag}
 rm -rf .git
