@@ -2,6 +2,7 @@ Source: ring-kde
 Section: comm
 Priority: extra
 Maintainer: Thibault Cohen <thibault.cohen@savoirfairelinux.com>
+Replaces: ring-gnome
 Build-Depends: debhelper (>= 9),
 # KDE
  cmake, git-core, qtbase5-dev, extra-cmake-modules, libqt5svg5-dev, libkf5attica-dev, libkf5attica-dev,
@@ -9,9 +10,9 @@ Build-Depends: debhelper (>= 9),
  libkf5windowsystem-dev, libkf5xmlgui-dev, libkf5iconthemes-dev, kinit-dev, kio-dev,
  libkf5completion-dev, libkf5crash-dev, kdelibs5-dev, libkf5notifications-dev,
 Standards-Version: 3.9.6
-Homepage: http://www.sflphone.org
-Vcs-Svn: svn://anonscm.debian.org/pkg-voip/sflphone/trunk/
-Vcs-Browser: http://anonscm.debian.org/viewvc/pkg-voip/sflphone/trunk/
+Homepage: http://www.ring.cx
+Vcs-Git: http://anongit.kde.org/ring-kde
+Vcs-Browser: https://projects.kde.org/projects/playground/pim/ring-kde/repository
 
 Package: ring-kde
 Architecture: any
