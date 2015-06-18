@@ -7,3 +7,10 @@ fedora_20:
 fedora_21:
     spec: ring-kde.spec
     ccache: true
+ubuntu_15.04_i386:
+    debian: debian
+    ccache: true
+fedora_21_i386:
+    spec: ring-kde.spec
+    ccache: true
+
