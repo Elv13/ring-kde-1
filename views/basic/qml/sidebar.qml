@@ -21,7 +21,7 @@ import org.kde.kirigami 2.4 as Kirigami
 import QtQuick.Layouts 1.9 as Layouts
 import org.kde.ringkde.basicview 1.0 as BasicView
 import org.kde.ringkde.jamicontactview 1.0 as JamiContactView
-import org.kde.ringkde.jaminotification 1.0 as JamiNotification
+//import org.kde.ringkde.jaminotification 1.0 as JamiNotification
 import org.kde.ringkde.jamihistoryview 1.0 as JamiHistoryView
 import org.kde.ringkde.genericutils 1.0 as GenericUtils
 
@@ -154,10 +154,10 @@ Controls.Pane {
                         opacity: width > implicitWidth/2
                     }
 
-                    JamiNotification.IndividualSettings {
-                        individual: workflow.currentIndividual
+                    /*JamiNotification.IndividualSettings {
+                        individual: mainPage.individual
                         Layouts.Layout.fillWidth: true
-                    }
+                    }*/
 
                     Kirigami.Heading {
                         level: 1

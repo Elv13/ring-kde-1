@@ -17,6 +17,8 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>. *
  **************************************************************************/
 
+#include <QtAndroid>
+
 //Qt
 #include <QtCore/QString>
 #include <QtCore/QtPlugin>
@@ -35,6 +37,11 @@
 #include <QQmlDebuggingEnabler>
 
 #include <QQmlExtensionPlugin>
+
+#ifdef Q_OS_ANDROID
+ #include <interfaces/android/androidaudioformat.h>
+ #include <interfaces/android/androidvideoformat.h>
+#endif
 
 #ifdef KQUICKITEMVIEWS_USE_STATIC_PLUGIN
 Q_IMPORT_PLUGIN(KQuickItemViews)
@@ -102,7 +109,7 @@ constexpr static const char version[] = "3.1.0";
 #define REGISTER_PLUGIN(name, uri) \
  qobject_cast<QQmlExtensionPlugin*>(qt_static_plugin_ ## name().instance())->registerTypes(uri); \
  qobject_cast<QQmlExtensionPlugin*>(qt_static_plugin_ ## name().instance())->initializeEngine(&engine, uri);
-
+#include <unistd.h>
 int main(int argc, char **argv)
 {
     //QQmlDebuggingEnabler enabler;
@@ -113,7 +120,7 @@ int main(int argc, char **argv)
     qputenv("QML2_IMPORT_PATH"   , "imaginary");
     qputenv("XDG_CURRENT_DESKTOP", "imaginary");
 #endif
-
+qDebug() << "=========================MAIN================================";
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     QApplication app(argc, argv);
@@ -125,6 +132,21 @@ int main(int argc, char **argv)
 #ifdef USE_STATIC_KF5
     qobject_cast<QQmlExtensionPlugin*>(qt_static_plugin_KirigamiPlugin().instance())->registerTypes("org.kde.kirigami");
 #endif
+
+#ifdef Q_OS_ANDROID
+
+    auto result = QtAndroid::checkPermission(QString("android.permission.CAMERA"));
+
+    if(result == QtAndroid::PermissionResult::Denied) {
+        QtAndroid::PermissionResultMap resultHash  = QtAndroid::requestPermissionsSync(QStringList({"android.permission.CAMERA"}));
+        QtAndroid::PermissionResultMap resultHash2 = QtAndroid::requestPermissionsSync(QStringList({"android.permission.RECORD_AUDIO"}));
+    }
+#endif
+
+#ifdef Q_OS_ANDROID
+    Interfaces::AndroidAudioFormat::init();
+#endif
+
     //FIXME remove
 #ifdef KQUICKITEMVIEWS_USE_STATIC_PLUGIN
     qobject_cast<QQmlExtensionPlugin*>(qt_static_plugin_KQuickItemViews().instance())->registerTypes("org.kde.playground.kquickitemviews");
@@ -157,6 +179,9 @@ int main(int argc, char **argv)
 
 #ifndef Q_OS_ANDROID
     REGISTER_PLUGIN(JamiNotification, "org.kde.ringkde.jaminotification")
+#else
+    Interfaces::AndroidAudioFormat::init();
+    Interfaces::AndroidVideoFormat::init();
 #endif
 
 #if false

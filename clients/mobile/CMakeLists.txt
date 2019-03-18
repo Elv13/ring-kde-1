@@ -153,6 +153,7 @@ TARGET_LINK_LIBRARIES(ring-kde
         Qt5::Gui
         Qt5::Svg
         Qt5::PrintSupport
+  	Qt5::AndroidExtras
 
         # KF5
         KF5::I18n

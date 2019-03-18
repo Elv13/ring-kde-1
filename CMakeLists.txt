@@ -51,27 +51,34 @@ ELSE()
     ENDIF()
 ENDIF()
 
-FIND_PACKAGE (KQuickItemViews QUIET CONFIG)
+#FIND_PACKAGE (KQuickItemViews QUIET CONFIG)
+
+message("\n\nFIND "  ${KQuickItemViews_FOUND})
 
 # Download libringqt if it wasn't found to simplify the build process
-IF(NOT ringqt_FOUND)
-    INCLUDE(cmake/FetchRingQt.cmake)
+INCLUDE(cmake/FetchRingQt.cmake)
 
+IF(NOT ringqt_FOUND)
     SET(LibRingQt_SRC ${CMAKE_CURRENT_BINARY_DIR}/libringqt/)
 ENDIF()
 
 # This package was developed for Ring-KDE. It is now a shared framework. Until
 # it is more widespread and stable, a copy is still included in Ring-KDE.
 IF(NOT KQuickItemViews_FOUND AND IS_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/libkquickitemviews/")
+message("\n\n\n\nFFFFFFFF")
     SET(LibKQuickItemViews_SRC "${CMAKE_CURRENT_SOURCE_DIR}/libkquickitemviews/")
     SET(libkquickitemviews_FOUND true)
     ADD_DEFINITIONS(-DKQUICKITEMVIEWS_USE_STATIC_PLUGIN=1)
 ELSEIF(NOT KQuickItemViews_FOUND AND IS_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/libkquickitemviews/")
+message("\n\n\nIIIIIIIIIII")
     SET(LibKQuickItemViews_SRC "${CMAKE_CURRENT_BINARY_DIR}/libkquickitemviews/")
     SET(libkquickitemviews_FOUND true)
     ADD_DEFINITIONS(-DKQUICKITEMVIEWS_USE_STATIC_PLUGIN=1)
 ELSEIF(NOT KQuickItemViews_FOUND)
     message(FATAL_ERROR "Download KQuickItemViews from `git clone https://anongit.kde.org/kquickitemviews/` and move it to `path/to/ring-kde/libkquickitemviews`")
+ELSE()
+message("\n\n\nSDDDSSSS " ${KQuickItemViews_FOUND})
+dsfsds()
 ENDIF()
 
 # Use the build-in copy if it has been found
@@ -90,11 +97,11 @@ ENDIF()
 IF(LibKQuickItemViews_SRC)
     # Use the .a, not the .so;
     SET(ENABLE_STATIC true)
-
+message("\n\n\nDDDDDDDDDDDDDDDDDDDDDDDDDDD")
     ADD_SUBDIRECTORY(${LibKQuickItemViews_SRC} build/build_libkquickitemviews)
+ELSE()
+asdaadadsa()
 ENDIF()
-
-
 INCLUDE(ECMInstallIcons)
 INCLUDE(ECMOptionalAddSubdirectory)
 
@@ -135,6 +142,7 @@ FIND_PACKAGE(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED
     PrintSupport
     QuickControls2
     Quick
+    AndroidExtras
 )
 
 IF (USE_STATIC_QT)
